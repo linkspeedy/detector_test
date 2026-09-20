@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: usdc-notifier
+    runtime: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    # -u disables Python's stdout/stderr buffering so logs show up immediately in Render
+    startCommand: "python -u main.py"
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN_2
+        sync: false
+      - key: TELEGRAM_CHAT_ID_2
+        sync: false
+      - key: TARGET_WALLET_ADDRESS
+        sync: false
+      - key: ETH_RPC_URL
+        sync: false
+      - key: BASE_RPC_URL
+        sync: false
+      - key: POLL_INTERVAL
+        value: 15
