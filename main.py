@@ -42,7 +42,7 @@ def poll_once(last_eth_block, last_base_block):
         latest_eth_block = eth_w3.eth.block_number
         if latest_eth_block > last_eth_block:
             send_log(f"Scanning ETH blocks {last_eth_block + 1} to {latest_eth_block}...")
-            events = eth_usdc_contract.events.Transfer.get_logs(fromBlock=last_eth_block + 1, toBlock=latest_eth_block)
+            events = eth_usdc_contract.events.Transfer.get_logs(from_block=last_eth_block + 1, to_block=latest_eth_block)
             for event in events:
                 if event.args.to == target_wallet:
                     amount = event.args.value / 1e6
@@ -65,7 +65,7 @@ def poll_once(last_eth_block, last_base_block):
         latest_base_block = base_w3.eth.block_number
         if latest_base_block > last_base_block:
             send_log(f"Scanning BASE blocks {last_base_block + 1} to {latest_base_block}...")
-            events = base_usdc_contract.events.Transfer.get_logs(fromBlock=last_base_block + 1, toBlock=latest_base_block)
+            events = base_usdc_contract.events.Transfer.get_logs(from_block=last_base_block + 1, to_block=latest_base_block)
             for event in events:
                 if event.args.to == target_wallet:
                     amount = event.args.value / 1e6
